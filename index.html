@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <title>Relax-O-Vision</title>
+    <link href="font/stylesheet.css" type="text/css" rel="stylesheet">
     <style type="text/css">
         body {
             margin: 0; padding: 0;
@@ -49,7 +50,9 @@
             font-size: 10vh;
             color: #FFF;
             text-align: center;
-            font-family:sans-serif;
+            font-family: 'comic_reliefregular';
+            font-variant: small-caps;
+            font-weight: bold;
         }
     </style>
 </head>
@@ -57,7 +60,7 @@
     <div id="video_foreground"></div>
     <div id="video_background"></div>
     <div id="relaxovision">
-        <h1>Relax-o-Vision</h1>
+        <h1>Relax-O-Vision</h1>
     </div>
     <script>
         var tag = document.createElement('script');
@@ -101,6 +104,8 @@
                                 onStateChange: function(e) {
                                     if(e.data == 1) {
                                         document.getElementById('relaxovision').style.background = 'transparent';
+                                    } else if(e.data == 0) {
+                                        background.playVideo();
                                     }
                                 }
                             }
