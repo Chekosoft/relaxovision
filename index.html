@@ -99,10 +99,7 @@
                                     foreground.playVideo();
                                 },
                                 onStateChange: function(e) {
-                                    if(e.data == 0) {
-                                        foreground.seekTo(0);
-                                        foreground.playVideo();
-                                    } else if(e.data == 1) {
+                                    if(e.data == 1) {
                                         document.getElementById('relaxovision').style.background = 'transparent';
                                     }
                                 }
@@ -113,8 +110,8 @@
                         if(e.data == 1) {
                             background.playVideo();
                         } else if(e.data == 0) {
-                            background.seekTo(0);
-                            background.playVideo();
+                            foreground.seekTo(0);
+                            foreground.playVideo();
                         }
                     }
                 }
