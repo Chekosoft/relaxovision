@@ -40,7 +40,7 @@
             width: 100vw;
             display: block;
             z-index: 2;
-            text-shadow: 0 0 5px #000;
+            text-shadow: 2px 2px 3px #000;
             background-color: #000;
             transition: background-color 2s;
         }
@@ -71,7 +71,7 @@
         var foreground, background;
         function onYouTubeIframeAPIReady() {
             foreground = new YT.Player('video_foreground', {
-                videoId: 'qREKP9oijWI',
+                videoId: 'Sy1Qlxgo2ek',
                 playerVars: {
                     fs: 0,
                     iv_load_policy: 3,
@@ -84,9 +84,8 @@
                 },
                 events: {
                     onReady: function(e) {
-                        foreground.mute();
                         background = new YT.Player('video_background', {
-                            videoId: 'oRu4aLAG2AI',
+                            videoId: 'tSsiS-v6_6M',
                             playerVars: {
                                 fs: 0,
                                 iv_load_policy: 3,
@@ -99,12 +98,14 @@
                             },
                             events: {
                                 onReady: function(e) {
+                                    foreground.setVolume(100);
                                     foreground.playVideo();
                                 },
                                 onStateChange: function(e) {
                                     if(e.data == 1) {
                                         document.getElementById('relaxovision').style.background = 'transparent';
                                     } else if(e.data == 0) {
+                                        background.setVolume(30);
                                         background.playVideo();
                                     }
                                 }
