@@ -105,6 +105,7 @@ function onYouTubeIframeAPIReady() {
               if(e.data == 1) {
                 document.getElementById('relaxovision').style.background = 'transparent';
               } else if(e.data == 0) {
+                background.setVolume(30);
                 background.playVideo();
               }
             }
