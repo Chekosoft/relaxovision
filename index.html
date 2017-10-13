@@ -5,21 +5,21 @@
     <title>Relax-O-Vision</title>
     <link href="font/stylesheet.css" type="text/css" rel="stylesheet">
     <style type="text/css">
-        body {
-            margin: 0; padding: 0;
-            overflow: hidden;
-        }
-        #video_foreground {
-            position: absolute;
-            left:0; top: 0;
-            max-height: 100vh;
-            max-width: 100vw;
-            height: 100vh;
-            width: 100vw;
-            display: block;
-            margin: 0; padding: 0;
-            z-index: 0;
-        }
+      body {
+        margin: 0; padding: 0;
+        overflow: hidden;
+      }
+      #video_foreground {
+        position: absolute;
+        left:0; top: 0;
+        max-height: 100vh;
+        max-width: 100vw;
+        height: 100vh;
+        width: 100vw;
+        display: block;
+        margin: 0; padding: 0;
+        z-index: 0;
+      }
 
         #video_background {
             width: 200px;
@@ -31,19 +31,19 @@
             z-index: 1;
         }
 
-        #relaxovision {
-            position: absolute;
-            left: 0; top: 0;
-            max-height: 100vh;
-            max-width; 100vw;
-            height: 100vh;
-            width: 100vw;
-            display: block;
-            z-index: 2;
-            text-shadow: 2px 2px 3px #000;
-            background-color: #000;
-            transition: background-color 2s;
-        }
+      #relaxovision {
+        position: absolute;
+        left: 0; top: 0;
+        max-height: 100vh;
+        max-width; 100vw;
+        height: 100vh;
+        width: 100vw;
+        display: block;
+        z-index: 2;
+        text-shadow: 0 0 5px #000;
+        background-color: #000;
+        transition: background-color 2s;
+      }
 
         #relaxovision h1 {
             margin-top: 85vh;
@@ -68,61 +68,60 @@
         var firstScriptTag = document.getElementsByTagName('script')[0];
         firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-        var foreground, background;
-        function onYouTubeIframeAPIReady() {
-            foreground = new YT.Player('video_foreground', {
-                videoId: 'Sy1Qlxgo2ek',
-                playerVars: {
-                    fs: 0,
-                    iv_load_policy: 3,
-                    loop: 1,
-                    modestbranding: 1,
-                    controls: 0,
-                    rel: 0,
-                    showinfo: 0,
-                    autohide: 1
-                },
-                events: {
-                    onReady: function(e) {
-                        background = new YT.Player('video_background', {
-                            videoId: 'tSsiS-v6_6M',
-                            playerVars: {
-                                fs: 0,
-                                iv_load_policy: 3,
-                                loop: 1,
-                                modestbranding: 1,
-                                controls: 0,
-                                rel: 0,
-                                showinfo: 0,
-                                autohide: 1
-                            },
-                            events: {
-                                onReady: function(e) {
-                                    foreground.setVolume(100);
-                                    foreground.playVideo();
-                                },
-                                onStateChange: function(e) {
-                                    if(e.data == 1) {
-                                        document.getElementById('relaxovision').style.background = 'transparent';
-                                    } else if(e.data == 0) {
-                                        background.setVolume(30);
-                                        background.playVideo();
-                                    }
-                                }
-                            }
-                        });
-                    },
-                    onStateChange: function(e) {
-                        if(e.data == 1) {
-                            background.playVideo();
-                        } else if(e.data == 0) {
-                            foreground.seekTo(0);
-                            foreground.playVideo();
-                        }
-                    }
-                }
-            });
+var foreground, background;
+function onYouTubeIframeAPIReady() {
+  foreground = new YT.Player('video_foreground', {
+    videoId: 'IadsLclBOS8',
+    playerVars: {
+      fs: 0,
+      iv_load_policy: 3,
+      loop: 1,
+      modestbranding: 1,
+      controls: 0,
+      rel: 0,
+      showinfo: 0,
+      autohide: 1
+    },
+    events: {
+      onReady: function(e) {
+        foreground.mute();
+        background = new YT.Player('video_background', {
+          videoId: 'oRu4aLAG2AI',
+          playerVars: {
+            fs: 0,
+            iv_load_policy: 3,
+            loop: 1,
+            modestbranding: 1,
+            controls: 0,
+            rel: 0,
+            showinfo: 0,
+            autohide: 1
+          },
+          events: {
+            onReady: function(e) {
+              foreground.playVideo();
+            },
+            onStateChange: function(e) {
+              if(e.data == 1) {
+                document.getElementById('relaxovision').style.background = 'transparent';
+              } else if(e.data == 0) {
+                background.playVideo();
+              }
+            }
+          }
+        });
+      },
+      onStateChange: function(e) {
+        if(e.data == 1) {
+          background.playVideo();
+        } else if(e.data == 0) {
+          foreground.seekTo(0);
+          foreground.playVideo();
         }
+      }
+    }
+  });
+}
     </script>
 </body>
 
